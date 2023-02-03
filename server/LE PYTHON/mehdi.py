@@ -6,10 +6,10 @@ from machine import Pin
 
 pinNumber = 5
 pinNumber2 = 18 
-led_green = Pin(pinNumber, mode=Pin.OUT)
-led_blue = Pin(pinNumber2, mode=Pin.OUT)
+led_green = PWM(Pin(pinNumber, mode=Pin.OUT))
+led_blue = PWM(Pin(pinNumber2, mode=Pin.OUT))
 pinNumber3 = 19 
-led_red = Pin(pinNumber3, mode=Pin.OUT)
+led_red = PWM(Pin(pinNumber3, mode=Pin.OUT))
 
 wlan = network.WLAN(network.STA_IF) # met la raspi en mode client wifi
 wlan.active(True) # active le mode client wifi
@@ -25,14 +25,17 @@ while(True):
         r = urequests.get(url) # lance une requete sur l'url
         print(r.json()) # traite sa reponse en Json
         
-        #val=r.json()
-        #blue=val["blue"]
-        #red=val["red"]
-        #green=val["green"]
-        blue = 0
-        red =0
-        green=0
+        val=r.json()
         
+        blue=val["message"]["blue"]
+        red=val["message"]["red"]
+        green=val["message"]["green"]
+        
+        led_green.duty_u16((green/255)*65535)
+        led_red.duty_u16((red/255)*65535)
+        led_blue.duty_u16((blue/255)*65535)
+
+        led_red.on()
         led_green.on()
         led_blue.on()
         
