@@ -14,24 +14,36 @@ led_red = Pin(pinNumber3, mode=Pin.OUT)
 wlan = network.WLAN(network.STA_IF) # met la raspi en mode client wifi
 wlan.active(True) # active le mode client wifi
 
+'''
 ssid = 'Pierro-Access-point'
 password = '123456789'
 wlan.connect(ssid, password) # connecte la raspi au réseau
 url = "http://192.168.4.3:3000/data"
+'''
+
+ssid = 'La Lumière de l\'Empereur'
+password = 'photostereoisomerisation'
+wlan.connect(ssid, password)
+url = "http://192.168.69.133:3000/"
 
 while(True):
     try:
         print("GET")
-        #r = urequests.get(url) # lance une requete sur l'url
+        r = urequests.get(url) # lance une requete sur l'url
         #print(r.json()) # traite sa reponse en Json
         
-        #val=r.json()
-        #blue=val["blue"]
-        #red=val["red"]
-        #green=val["green"]
+        val=r.json()
+        
+        blue=val["message"]["blue"]
+        red=val["message"]["red"]
+        green=val["message"]["green"]
+        
+        print(blue)
+        '''
         blue = 0
         red =0
         green=0
+        '''
         
         led_green.on()
         led_blue.on()
@@ -39,14 +51,16 @@ while(True):
         utime.sleep(0.1)
         led_blue.off()
         led_green.off()
-        led_red.of()
+        led_red.off()
     
-        print(blue)
+        
+        
+        '''
         print(red)
         print(green)
+        '''
         
-        
-        # r.close()  ferme la demande
+        r.close()  #ferme la demande
         
     except Exception as e:
         print(e)
