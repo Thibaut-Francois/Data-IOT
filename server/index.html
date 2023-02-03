@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form">
+        <input id="nb" type="number" name="data">
+        <input type="submit">
+    </form>
+
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+
+        let number = document.getElementById("nb")
+        console.log(number.value)
+        const form = document.getElementById('form');
+        console.log(form)
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            //Devinci :   10.2.162.199
+            //Ma 4G :   192.168.69.133
+            axios.post('http://10.2.162.199:3000/led', {
+                "number":number.value
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        });
+    </script>
+    
+</body>
+</html>
