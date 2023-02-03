@@ -20,10 +20,14 @@ app.get('/test', (req, res) => res.json({
     vinted:"si tu ne veux plus des tes vetements ! vend les !"
  }));
 
+
  app.post('/led', (req, res) => {
     console.log(req.body.number)
-    data = req.body.number
-    res.send({ message: 'Hello World! In Json' })});
+     data = req.body
+     r = req.body.r
+     g = req.body.g
+     b = req.body.b
+    res.send({ "message": data })});
 
 HTTPserver.listen(port, () => { 
     console.log(`On écoute aux portes : `+port);
