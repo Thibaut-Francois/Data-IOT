@@ -2,7 +2,7 @@ import network   #import des fonction lier au wifi
 import urequests    #import des fonction lier au requetes http
 import utime    #import des fonction lier au temps
 import ujson    #import des fonction lier aà la convertion en Json
-from machine import Pin
+from machine import Pin, PWM
 
 pinNumber = 5
 pinNumber2 = 18 
@@ -31,9 +31,9 @@ while(True):
         red=val["message"]["red"]
         green=val["message"]["green"]
         
-        led_green.duty_u16((green/255)*65535)
-        led_red.duty_u16((red/255)*65535)
-        led_blue.duty_u16((blue/255)*65535)
+        led_green.duty_u16(int((green/255)*65535))
+        led_red.duty_u16(int((red/255)*65535))
+        led_blue.duty_u16(int((blue/255)*65535))
 
         led_red.on()
         led_green.on()
