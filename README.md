@@ -14,6 +14,11 @@ mais ils nous a manquer un peu de temps pour faire briller le led RGB de la coul
 séléctionnée.
 
 Schéma technique dans le repo
-Vidéo 
+Vidéo dans le repo (désolé pour le son en fond). Moments clés :
+    0:02 entrée du chiffre 5 et du pays "France"
+    0:11 verification de l'envoie des infromations dans le serveur Node
+    0:15 lancement du programe python
+    0:20 le panneau led brille aux couleurs de la France
+    0:24 la led brille 5 fois d'affilées et recommence après quelques secondes
 
 Membres du groupe : Thibaut François et Mehdi Bellam
