@@ -2,7 +2,7 @@ import network   #import des fonction lier au wifi
 import urequests    #import des fonction lier au requetes http
 import utime    #import des fonction lier au temps
 import ujson    #import des fonction lier aà la convertion en Json
-from machine import Pin
+from machine import Pin, PWM
 
 pinNumber = 5
 pinNumber2 = 18 
@@ -14,10 +14,17 @@ led_red = PWM(Pin(pinNumber3, mode=Pin.OUT))
 wlan = network.WLAN(network.STA_IF) # met la raspi en mode client wifi
 wlan.active(True) # active le mode client wifi
 
+'''
 ssid = 'Pierro-Access-point'
 password = '123456789'
 wlan.connect(ssid, password) # connecte la raspi au réseau
 url = "http://192.168.4.3:3000/led"
+'''
+
+ssid = 'La Lumière de l\'Empereur'
+password = 'photostereoisomerisation'
+wlan.connect(ssid, password)
+url = "http://192.168.69.133:3000/"
 
 while(True):
     try:
@@ -31,17 +38,12 @@ while(True):
         red=val["message"]["red"]
         green=val["message"]["green"]
         
-        led_green.duty_u16((green/255)*65535)
-        led_red.duty_u16((red/255)*65535)
-        led_blue.duty_u16((blue/255)*65535)
+        led_green.duty_u16(int((green/255)*65535))
+        led_red.duty_u16(int((red/255)*65535))
+        led_blue.duty_u16(int((blue/255)*65535))
 
-        led_red.on()
-        led_green.on()
-        led_blue.on()
-        
+
         utime.sleep(0.1)
-        led_blue.off()
-        led_green.off()
     
         print(blue)
         print(red)
