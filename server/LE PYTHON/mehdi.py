@@ -42,7 +42,6 @@ while(True):
         led_red.duty_u16(int((red/255)*65535))
         led_blue.duty_u16(int((blue/255)*65535))
 
-
         utime.sleep(0.1)
     
         print(blue)
